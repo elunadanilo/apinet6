@@ -3,12 +3,13 @@ using Store.ApplicationCore.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Store.ApplicationCore.Interfaces
 {
     public interface IProductService
     {
-        PagedList<ProductResponse> GetProductsService(ProductSearch filters);
+        Task<PagedList<ProductResponse>> GetProductsService(ProductSearch filters);
 
         ProductResponse GetProductByIdService(int productId);
 

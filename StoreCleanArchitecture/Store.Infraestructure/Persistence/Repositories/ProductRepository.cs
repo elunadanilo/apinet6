@@ -8,6 +8,8 @@ using Store.ApplicationCore.Utils;
 using Store.Infrastructure.Persistence.Contexts;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace Store.Infrastructure.Persistence.Repositories
 {
     public class ProductRepository : IProductRepository
@@ -58,9 +60,9 @@ namespace Store.Infrastructure.Persistence.Repositories
             throw new NotFoundException();
         }
 
-        public IEnumerable<ProductResponse> GetProducts()
+        public async Task<List<ProductResponse>> GetProducts()
         {
-            return this.storeContext.Products.Select(p => this.mapper.Map<ProductResponse>(p)).ToList();
+            return await this.storeContext.Products.Select(p => this.mapper.Map<ProductResponse>(p)).ToListAsync();
         }
 
         public ProductResponse UpdateProduct(int productId, UpdateProductRequest request)

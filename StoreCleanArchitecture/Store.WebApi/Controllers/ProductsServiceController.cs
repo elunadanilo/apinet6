@@ -24,9 +24,9 @@ namespace Store.WebApi.Controllers
         [HttpGet(Name = nameof(GetProducts))]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(ApiResponse<IEnumerable<ProductResponse>>))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult GetProducts([FromQuery]ProductSearch filter) 
+        public async Task<IActionResult> GetProducts([FromQuery]ProductSearch filter) 
         {
-            var products = _productService.GetProductsService(filter);
+            var products = await _productService.GetProductsService(filter);
 
             var metadata = new Metadata
             {

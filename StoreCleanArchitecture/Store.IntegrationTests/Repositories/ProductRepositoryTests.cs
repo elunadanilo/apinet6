@@ -26,13 +26,13 @@ namespace Store.IntegrationTests.Repositories
         }
 
         [Fact]
-        public void GetProducts_ReturnsAllProducts()
+        public async System.Threading.Tasks.Task GetProducts_ReturnsAllProductsAsync()
         {
             using (var context = Fixture.CreateContext())
             {
                 var repository = new ProductRepository(context, _mapper);
 
-                var products = repository.GetProducts();
+                var products = await repository.GetProducts();
 
                 Assert.Equal(10, products.Count());
             }

@@ -5,6 +5,7 @@ using Store.ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Store.ApplicationCore.Services
 {
@@ -33,12 +34,12 @@ namespace Store.ApplicationCore.Services
             return this.productRepository.GetProductById(productId);
         }
 
-        public PagedList<ProductResponse> GetProductsService(ProductSearch filters)
+        public async Task<PagedList<ProductResponse>> GetProductsService(ProductSearch filters)
         {
             filters.PageNumber = filters.PageNumber == 0 ? _paginationOptions.DefaultPageNumber : filters.PageNumber;
             filters.PageSize = filters.PageSize == 0 ? _paginationOptions.DefaultPageSize : filters.PageSize;
 
-            var product =  this.productRepository.GetProducts();
+            var product =  await this.productRepository.GetProducts();
 
             var pagedProduct = PagedList<ProductResponse>.Create(product,filters.PageNumber, filters.PageSize);
 

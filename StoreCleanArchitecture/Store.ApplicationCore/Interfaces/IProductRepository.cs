@@ -1,11 +1,12 @@
 ﻿using Store.ApplicationCore.DTOs;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Store.ApplicationCore.Interfaces
 {
     public interface IProductRepository
     {
-        IEnumerable<ProductResponse> GetProducts();
+        Task<List<ProductResponse>> GetProducts();
 
         ProductResponse GetProductById(int productId);
 
