@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Store.ApplicationCore.CustomEntities;
 using Store.ApplicationCore.Interfaces;
 using Store.ApplicationCore.Services;
 using Store.Infrastructure.Persistence.Contexts;
@@ -22,5 +23,12 @@ namespace Store.Infrastructure
 
             return services;
         }
+        public static IServiceCollection AddPagination(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<PaginationOptions>(options => configuration.GetSection("Pagination").Bind(options));
+
+            return services;
+        }
+
     }
 }
