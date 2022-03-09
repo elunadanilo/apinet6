@@ -1,10 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Store.ApplicationCore;
 using Store.Infrastructure;
-using FluentValidation.AspNetCore;
-using FluentValidation;
 using Store.Infrastructure.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,8 +25,8 @@ builder.Services.AddControllers(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+//builder.Services.AddSwaggerGen();
+builder.Services.AddSwagger($"Store.WebApi.xml");
 builder.Services.ConfigureFluentValidation();
 
 var app = builder.Build();
